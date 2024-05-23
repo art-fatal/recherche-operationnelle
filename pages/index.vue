@@ -27,10 +27,14 @@
 </template>
 
 <script setup lang="ts">
-const decision = ref<number>();
-const constrainst = ref<number>();
+import {usePLNEStore} from "~/stores/plne.store";
+const router = useRouter()
+
+const plneStore = usePLNEStore()
+const { decision, constrainst } = storeToRefs(plneStore)
+
 
 const submit = () => {
-
+  router.push('/data')
 }
 </script>
