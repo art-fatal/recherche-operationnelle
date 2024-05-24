@@ -9,11 +9,17 @@
           </div>
 
           <div class="flex gap-3 p-fluid justify-between items-center">
-            <label :class="'w-1/'+(decision+2)" >Fonction objéctif :</label>
-            <Dropdown v-model="goal" :options="goalChoices" optionLabel="name" :class="'w-1/'+(decision+2)" />
+            <label :class="'w-1/'+(decision+2)">Fonction objéctif :</label>
+            <Dropdown
+                v-model="goal"
+                :options="goalChoices"
+                optionLabel="name"
+                optionValue="value"
+                :class="'w-1/'+(decision+2)"
+            />
 
             <div v-for="(item, index) in Array.from({ length: decision })" :key="index"
-                 class="flex gap-3 justify-between" :class="'w-1/'+(decision+2)" >
+                 class="flex gap-3 justify-between" :class="'w-1/'+(decision+2)">
               <InputGroup class="w-2/3">
                 <InputNumber class="w-1/2"/>
                 <InputGroupAddon class="w-1/2">X<sub>{{ index + 1 }}</sub></InputGroupAddon>
@@ -38,9 +44,16 @@
                 <InputGroupAddon class="w-1/2">X<sub>{{ index + 1 }}</sub></InputGroupAddon>
               </InputGroup>
               <div v-if="index < decision - 1" class="w-1/3 text-center flex items-center justify-center">+</div>
-              <Dropdown v-else class="w-1/3" v-model="contraintOperator[constrainstIndex]" :options="operatorChoices" optionLabel="name" />
+              <Dropdown
+                  v-else
+                  class="w-1/3"
+                  v-model="contrainstOperator[constrainstIndex]"
+                  :options="operatorChoices"
+                  optionLabel="name"
+                  optionValue="value"
+              />
             </div>
-            <InputNumber class="ms-5" :class="'w-1/'+((decision*3)+1)" />
+            <InputNumber class="ms-5" :class="'w-1/'+((decision*3)+1)"/>
           </div>
           <p class="text-center mb-8">
             <span v-for="(decisionItem, decisionIndex) in Array.from({ length: decision })" :key="'dcp'+decisionIndex">
@@ -69,7 +82,7 @@ import {GoalEnum, OperatorEnum} from "@models/plne.model";
 const router = useRouter()
 const plneStore = usePLNEStore()
 
-const {goal, decision, constrainst, contraintOperator} = storeToRefs(plneStore)
+const {goal, decision, constrainst, contrainstOperator} = storeToRefs(plneStore)
 const goalChoices = [
   {name: 'Maximiser', value: GoalEnum.MAXIMIZE},
   {name: 'Minimiser', value: GoalEnum.MINIMIZE}
@@ -85,7 +98,4 @@ const submit = () => {
   router.push('/data')
 }
 
-onMounted(() => {
-  plneStore.setContrainstOperator(Array.from({ length: constrainst }).map(() => OperatorEnum.LOWER))
-})
 </script>

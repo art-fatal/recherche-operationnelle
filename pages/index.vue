@@ -9,12 +9,12 @@
 
           <div class="flex flex-wrap gap-3 p-fluid justify-between">
             <FloatLabel>
-              <InputNumber id="number-input" v-model="decision" />
+              <InputNumber id="number-input" v-model="decision" :min="2" />
               <label for="number-input">Décision</label>
             </FloatLabel>
 
             <FloatLabel>
-              <InputNumber id="number-input" v-model="constrainst" />
+              <InputNumber id="number-input" v-model="constrainst" :min="1"/>
               <label for="number-input">Contrainte</label>
             </FloatLabel>
             <Button label="Continuer" outlined class="w-50 p-3 text-xl" @click="submit"></Button>
